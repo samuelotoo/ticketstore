@@ -1,4 +1,7 @@
+import { notFound } from "next/navigation";
 import React from "react";
+// creating a 404 page or error page
+export const dynamicParams = true;
 
 // enable static rendering for easy data use on the page
 export async function generateStaticParams() {
@@ -17,6 +20,10 @@ async function getTicket(id) {
       validate: 10,
     },
   });
+
+  if (!res.ok) {
+    notFound()
+  }
 
   return res.json();
 }
