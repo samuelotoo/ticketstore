@@ -1,19 +1,20 @@
 import Link from "next/link";
 import React from "react";
 
+
+// this getTickets function is to get the data from the database
 async function getTickets() {
   // imitate delay
-  await new Promise(resolve => setTimeout(resolve, 3000))
-  
-  const res = await fetch("http://localhost:4000/tickets", {
-    next: {
-      validate: 10, //for reloaded database when updated
-    },
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
+  const res = await fetch(`http://localhost:2000/tickets`, {
+    cache: "no-store",
   });
 
   return res.json();
 }
 
+// this Ticketlist function is to now display the data from the database
 export default async function Ticketlist() {
   const tickets = await getTickets();
   return (
