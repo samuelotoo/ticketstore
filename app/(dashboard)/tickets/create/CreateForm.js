@@ -1,4 +1,4 @@
-"use client"; //comes before anything else
+"use client"; //comes before anything else and also needed in other to get the client server
 
 import React from "react";
 
@@ -13,6 +13,7 @@ export default function CreateForm() {
   const [priority, setPriority] = useState("low");
   const [isLoading, setIsLoading] = useState(false);
 
+  //this is to handle submit on clicking on the submit botton
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -24,6 +25,7 @@ export default function CreateForm() {
       user_email: "sam@gmail.com",
     };
 
+    // this is to push the new ticket created into the database
     const res = await fetch("http://localhost:2000/tickets", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
