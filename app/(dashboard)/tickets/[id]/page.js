@@ -3,6 +3,16 @@ import React from "react";
 // creating a 404 page or error page
 export const dynamicParams = true;
 
+export async function generateMetadata({params}){
+  const id = params.id
+
+  const res = await fetch(`http://localhost:2000/tickets/${id}`)
+  const ticket = await res.json()
+  return{
+    title:`Sam's Helpdesk | ${ticket.title}`
+  }
+}
+
 // enable static rendering for easy data use on the page
 export async function generateStaticParams() {
   const res = await fetch("http://localhost:2000/tickets");
